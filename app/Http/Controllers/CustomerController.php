@@ -6,6 +6,7 @@ use App\Http\Requests\CustomerStoreRequest;
 use App\Http\Requests\CustomerUpdateRequest;
 use App\Models\Customer;
 use App\Services\SearchService;
+use App\Services\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -16,6 +17,7 @@ class CustomerController extends Controller
 {
 
     public $searchService;
+
     public function __construct(SearchService $searchService)
     {
 
@@ -55,12 +57,8 @@ class CustomerController extends Controller
 
         $validated = $request->validated();
 
-        if ($request->hasFile('contract_file')) {
-            $file = $request->file('contract_file');
-            $contractFileName = time() . '_' . Str::slug($file->getClientOriginalName());
-            $file->storeAs('contracts', $contractFileName, 'public');
-            $validated['contract_file'] = $contractFileName;
-        }
+        $fileUploadService = new FileService();
+        $validated['contract_file'] =  $fileUploadService->uploadFile($request->contract_file, 'contracts');
 
         Customer::create($validated);
 
@@ -94,18 +92,9 @@ class CustomerController extends Controller
     {
         $validated = $request->validated();
 
-        if ($request->hasFile('contract_file')) {
-
-            $file = $request->file('contract_file');
-            $contractFileName =  time() . '_' . Str::slug($file->getClientOriginalName());
-            $file->storeAs('contracts', $contractFileName, 'public');
-
-            if ($customer->contract_file) {
-                Storage::disk('public')->delete('contracts/' . $customer->contract_file);
-            }
-
-            $validated['contract_file'] = $contractFileName;
-
+        if($request->contract_file){
+            $fileUploadService = new FileService();
+            $validated['contract_file'] =  $fileUploadService->uploadFile($request->contract_file, 'contracts');
         }
 
         $customer->update($validated);
@@ -131,13 +120,4 @@ class CustomerController extends Controller
 
     }
 
-//    public function search(Request $request)
-//    {
-//
-//
-//
-//
-//
-//
-//    }
 }

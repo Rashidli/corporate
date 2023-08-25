@@ -15,6 +15,7 @@ class VatController extends Controller
 
     public function __construct(SearchService $searchService)
     {
+
         $this->searchService = $searchService;
 
     }

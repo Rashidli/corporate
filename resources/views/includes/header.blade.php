@@ -204,6 +204,32 @@
                         </ul>
                     </li>
 
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="ri-layout-3-line"></i>
+                            <span>Tənzimləmələr</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="#">Şirkət adları</a></li>
+                            <li><a href="#">Müəssissələr</a></li>
+                            <li><a href="#">Şirkət Kateqoriyaları</a></li>
+                            <li><a href="#">Fəaliyyət sahələri</a></li>
+                            <li><a href="#">Şirkət Ünvanları</a></li>
+                            <li><a href="#">Şirkət Nöləri</a></li>
+                            <li><a href="#">Müqavilələr</a></li>
+                            <li><a href="#">Valyutalar</a></li>
+                            <li><a href="#">Ödəmə növləri</a></li>
+                            <li><a href="#">Ödəmə Şərtləri</a></li>
+                            <li><a href="#">Banklar</a></li>
+                            <li><a href="#">Görüşən əməkdaşlar</a></li>
+                            <li><a href="#">Görüşən əməkdaşlar</a></li>
+                            <li><a href="#">Göndərənlər</a></li>
+                            <li><a href="#">Görüş növləri</a></li>
+                            <li><a href="#">Xidmət təklifləri</a></li>
+                            <li><a href="#">Mənbələr</a></li>
+                        </ul>
+                    </li>
+
 
                 </ul>
             </div>

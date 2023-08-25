@@ -172,7 +172,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class=" col-form-label">Fayl</label>
-                                    <a href="{{asset('storage/contracts/' . $customer->contract_file)}}">File</a>
+                                    <a href="{{asset('storage/' . $customer->contract_file)}}">File</a>
                                     <input class="form-control" type="file" name="contract_file">
                                 @if($errors->first('contract_file')) <small class="form-text text-danger">{{$errors->first('contract_file')}}</small> @endif
                                 </div>

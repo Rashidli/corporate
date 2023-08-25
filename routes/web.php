@@ -38,11 +38,9 @@ Route::group(['middleware' =>'auth'], function (){
     Route::resource('permissions',PermissionController::class);
     Route::resource('customers',CustomerController::class);
 
-
     Route::resource('acts',ActController::class);
     Route::resource('payments',PaymentController::class);
     Route::resource('vats',VatController::class);
     Route::resource('meetings',MeetingController::class);
-
 
 });

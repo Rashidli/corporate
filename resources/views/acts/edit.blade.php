@@ -51,7 +51,7 @@
                                     <select class="form-control js-example-basic-single" type="text" name="corporate_name" id="corporate_name">
                                         <option selected disabled>----- </option>
                                         @foreach($corporates as $c)
-                                            <option value="{{$c->company_name}}" data-voen="{{$c->company_voen}}" {{$c->company_name == $act->corporate_name ? 'selected' : ''}}>{{$c->company_name}}</option>
+                                            <option value="{{$c->company_name}}" data-voen="{{$c->company_voen}}" {{$c->company_name === $act->corporate_name ? 'selected' : ''}}>{{$c->company_name}}</option>
                                         @endforeach
                                     </select>
                                     @if($errors->first('corporate_name')) <small class="form-text text-danger">{{$errors->first('corporate_name')}}</small> @endif
@@ -84,7 +84,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <a href="{{asset('storage/acts/'. $act->file)}}">File</a>
+                                    <a href="{{asset('storage/'. $act->file)}}">File</a>
                                     <input class="form-control" type="file" name="file">
                                     @if($errors->first('file')) <small class="form-text text-danger">{{$errors->first('file')}}</small> @endif
                                 </div>

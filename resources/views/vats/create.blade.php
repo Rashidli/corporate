@@ -27,11 +27,10 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="col-form-label js-example-basic-single">Korporativin adı</label>
-                                        <select class="form-control" type="text" name="corporate_name" id="corporate_name">
+                                        <label class="col-form-label">Korporativin adı</label>
+                                        <select class="form-control js-example-basic-single" type="text" name="corporate_name" id="corporate_name">
                                             <option selected disabled>----- </option>
                                             @foreach($corporates as $c)
-
                                                 <option value="{{$c->company_name}}" data-voen="{{$c->company_voen}}">{{$c->company_name}}</option>
                                             @endforeach
                                         </select>

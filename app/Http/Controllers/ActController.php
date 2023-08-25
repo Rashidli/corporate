@@ -6,6 +6,7 @@ use App\Http\Requests\ActStoreRequest;
 use App\Http\Requests\ActUpdateRequest;
 use App\Models\Act;
 use App\Models\Customer;
+use App\Services\FileService;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -55,12 +56,8 @@ class ActController extends Controller
 
         $validated = $request->validated();
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $contractFileName = time() . '_' . Str::slug($file->getClientOriginalName());
-            $file->storeAs('acts', $contractFileName, 'public');
-            $validated['file'] = $contractFileName;
-        }
+        $fileUploadService = new FileService();
+        $validated['file'] =  $fileUploadService->uploadFile($request->file, 'acts');
 
         Act::create($validated);
 
@@ -83,8 +80,10 @@ class ActController extends Controller
 
     public function edit(Act $act)
     {
+
         $corporates = Customer::select('id','company_name', 'company_voen')->get();
         return view('acts.edit', compact('act', 'corporates'));
+
     }
 
     /**
@@ -93,20 +92,12 @@ class ActController extends Controller
 
     public function update(ActUpdateRequest $request, Act $act)
     {
+
         $validated = $request->validated();
 
-        if ($request->hasFile('file')) {
-
-            $file = $request->file('file');
-            $contractFileName =  time() . '_' . Str::slug($file->getClientOriginalName());
-            $file->storeAs('contracts', $contractFileName, 'public');
-
-            if ($act->contract_file) {
-                Storage::disk('public')->delete('acts/' . $act->contract_file);
-            }
-
-            $validated['file'] = $contractFileName;
-
+        if($request->file){
+            $fileUploadService = new FileService();
+            $validated['file'] =  $fileUploadService->uploadFile($request->file, 'acts');
         }
 
         $act->update($validated);

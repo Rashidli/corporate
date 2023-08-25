@@ -47,14 +47,14 @@
                                                 <td>{{$act->voen}}</td>
                                                 <td>{{$act->enterprise_name}}</td>
                                                 <td>{{$act->company_name}}</td>
-                                                <td><a href="{{asset('storage/acts/' .$act->file)}}">File</a></td>
+                                                <td><a href="{{asset('storage/' .$act->file)}}">File</a></td>
                                                 <td>{{$act->is_active == true ? 'Active' : 'Deactive'}}</td>
                                                 <td>
                                                     <a href="{{route('acts.edit',$act->id)}}" class="btn btn-primary" style="margin-right: 15px" >Edit</a>
                                                     <form action="{{route('acts.destroy', $act->id)}}" method="post" style="display: inline-block">
                                                         {{ method_field('DELETE') }}
                                                         @csrf
-                                                        <button onclick="confirm('Məlumatın silinməyin təsdiqləyin')" type="submit" class="btn btn-danger">Delete</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>

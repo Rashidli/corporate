@@ -43,17 +43,18 @@
                                                 <td>{{$customer->main_address}}</td>
                                                 <td>{{$customer->person_phone}}</td>
                                                 <td>{{$customer->company_phone}}</td>
-                                                <td><a href="{{asset('storage/contracts/' .$customer->contract_file)}}">File</a></td>
+
+                                                <td><a href="{{asset('storage/' . $customer->contract_file)}}">File</a></td>
+
                                                 <td>{{$customer->is_active == true ? 'Active' : 'Deactive'}}</td>
                                                 <td><a href="{{route('customers.edit',$customer->id)}}" class="btn btn-primary" style="margin-right: 15px" >Edit</a>
                                                     <form action="{{route('customers.destroy', $customer->id)}}" method="post" style="display: inline-block">
                                                         {{ method_field('DELETE') }}
                                                         @csrf
-                                                        <button onclick="confirm('Məlumatın silinməyin təsdiqləyin')" type="submit" class="btn btn-danger">Delete</button>
+                                                        <button  type="submit" class="btn btn-danger">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>
-
 
                                         @endforeach
 

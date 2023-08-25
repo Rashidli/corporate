@@ -6,6 +6,7 @@ use App\Http\Requests\MeetingStoreRequest;
 use App\Http\Requests\MeetingUpdateRequest;
 use App\Models\Customer;
 use App\Models\Meeting;
+use App\Services\FileService;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -52,19 +53,9 @@ class MeetingController extends Controller
 
         $validated = $request->validated();
 
-        if ($request->hasFile('service_offer_file')) {
-            $file = $request->file('service_offer_file');
-            $fileName = time() . '_' . Str::slug($file->getClientOriginalName());
-            $file->storeAs('meetings', $fileName, 'public');
-            $validated['service_offer_file'] = $fileName;
-        }
-
-        if ($request->hasFile('protocol_file')) {
-            $file = $request->file('protocol_file');
-            $fileName = time() . '_' . Str::slug($file->getClientOriginalName());
-            $file->storeAs('meetings', $fileName, 'public');
-            $validated['protocol_file'] = $fileName;
-        }
+        $fileUploadService = new FileService();
+        $validated['service_offer_file'] =  $fileUploadService->uploadFile($request->service_offer_file, 'meetings');
+        $validated['protocol_file'] =  $fileUploadService->uploadFile($request->protocol_file, 'meetings');
 
         Meeting::create($validated);
 
@@ -98,33 +89,14 @@ class MeetingController extends Controller
     public function update(MeetingUpdateRequest $request, Meeting $meeting)
     {
         $validated = $request->validated();
+        $fileUploadService = new FileService();
 
-        if ($request->hasFile('service_offer_file')) {
-
-            $file = $request->file('service_offer_file');
-            $fileName =  time() . '_' . Str::slug($file->getClientOriginalName());
-            $file->storeAs('meetings', $fileName, 'public');
-
-            if ($meeting->service_offer_file) {
-                Storage::disk('public')->delete('meetings/' . $meeting->service_offer_file);
-            }
-
-            $validated['service_offer_file'] = $fileName;
-
+        if($request->service_offer_file){
+            $validated['service_offer_file'] =  $fileUploadService->uploadFile($request->service_offer_file, 'meetings');
         }
 
-        if ($request->hasFile('protocol_file')) {
-
-            $file = $request->file('protocol_file');
-            $fileName =  time() . '_' . Str::slug($file->getClientOriginalName());
-            $file->storeAs('meetings', $fileName, 'public');
-
-            if ($meeting->protocol_file) {
-                Storage::disk('public')->delete('meetings/' . $meeting->protocol_file);
-            }
-
-            $validated['protocol_file'] = $fileName;
-
+        if($request->protocol_file){
+            $validated['protocol_file'] =  $fileUploadService->uploadFile($request->protocol_file, 'meetings');
         }
 
         $meeting->update($validated);

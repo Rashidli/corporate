@@ -165,7 +165,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="col-form-label">Xidmət təklifi faylı</label>
+                                    <a href="{{asset('storage/'. $meeting->service_offer_file)}}">Xidmət təklifi faylı</a>
                                     <input value="{{$meeting->service_offer_file}}" class="form-control" type="file" name="service_offer_file">
                                     @if($errors->first('service_offer_file')) <small class="form-text text-danger">{{$errors->first('service_offer_file')}}</small> @endif
                                 </div>
@@ -177,7 +177,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="col-form-label">Protokol faylı</label>
+                                    <a href="{{asset('storage/'. $meeting->protocol_file)}}">Protokol fayl</a>
                                     <input value="{{$meeting->protocol_file}}" class="form-control" type="file" name="protocol_file">
                                     @if($errors->first('protocol_file')) <small class="form-text text-danger">{{$errors->first('protocol_file')}}</small> @endif
                                 </div>
