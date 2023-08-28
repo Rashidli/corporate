@@ -28,8 +28,9 @@
                                     <label class="col-form-label">Fəaliyyət sahəsi</label>
                                     <select class="form-control" type="text" name="company_area">
                                         <option selected disabled>----- </option>
-                                        <option value="Fəaliyyət sahəsi1" {{$customer->company_area == 'Fəaliyyət sahəsi1' ? 'selected' : ''}}>Fəaliyyət sahəsi1</option>
-                                        <option value="Fəaliyyət sahəsi2"  {{$customer->company_area == 'Fəaliyyət sahəsi2' ? 'selected' : ''}}>Fəaliyyət sahəsi2</option>
+                                        @foreach($field_activities as $f)
+                                            <option {{$customer->company_area == $f->title ? 'selected' : ''}}  value="{{$f->title}}">{{$f->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('company_area')) <small class="form-text text-danger">{{$errors->first('company_area')}}</small> @endif
                                 </div>
@@ -97,8 +98,9 @@
                                     <label class="col-form-label">Şirkət Kateqoriyası</label>
                                     <select class="form-control" type="text" name="company_cat">
                                         <option selected disabled>----- </option>
-                                        <option value="Şirkət Kateqoriyası1" {{$customer->company_cat == 'Şirkət Kateqoriyası1' ? 'selected' : ''}}>Şirkət Kateqoriyası1</option>
-                                        <option value="Şirkət Kateqoriyası2" {{$customer->company_cat == 'Şirkət Kateqoriyası2' ? 'selected' : ''}}>Şirkət Kateqoriyası2</option>
+                                        @foreach($company_categories as $c)
+                                            <option value="{{$c->title}}" {{$customer->company_cat == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('company_cat')) <small class="form-text text-danger">{{$errors->first('company_cat')}}</small> @endif
                                 </div>
@@ -111,8 +113,9 @@
                                     <label class="col-form-label">Şirkət Ünvanı</label>
                                     <select class="form-control" type="text" name="company_address">
                                         <option selected disabled>----- </option>
-                                        <option value="Şirkət Ünvanı1" {{$customer->company_address == 'Şirkət Ünvanı1' ? 'selected' : ''}}>Şirkət Ünvanı1</option>
-                                        <option value="Şirkət Ünvanı2" {{$customer->company_address == 'Şirkət Ünvanı2' ? 'selected' : ''}}>Şirkət Ünvanı2</option>
+                                        @foreach($company_addresses as $c)
+                                            <option value="{{$c->title}}" {{$customer->company_address == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('company_address')) <small class="form-text text-danger">{{$errors->first('company_address')}}</small> @endif
                                 </div>
@@ -127,8 +130,9 @@
                                     <label class="col-form-label">Şirkət Növü</label>
                                     <select class="form-control" type="text" name="company_type">
                                         <option selected disabled>----- </option>
-                                        <option value="Şirkət Növü1" {{$customer->company_type == 'Şirkət Növü1' ? 'selected' : ''}}>Şirkət Növü1</option>
-                                        <option value="Şirkət Növü2" {{$customer->company_type == 'Şirkət Növü2' ? 'selected' : ''}}>Şirkət Növü2</option>
+                                        @foreach($company_types as $c)
+                                            <option value="{{$c->title}}" {{$customer->company_type == $c->title ? 'selected' : ''}}>{{$c->title}} </option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('company_type')) <small class="form-text text-danger">{{$errors->first('company_type')}}</small> @endif
                                 </div>
@@ -144,8 +148,9 @@
                                     <label class="col-form-label">Müqavilə</label>
                                     <select class="form-control" type="text" name="contract_name">
                                         <option selected disabled>----- </option>
-                                        <option value="Müqavilə1" {{$customer->contract_name == 'Müqavilə1' ? 'selected' : ''}}>Müqavilə1</option>
-                                        <option value="Müqavilə2" {{$customer->contract_name == 'Müqavilə2' ? 'selected' : ''}}>Müqavilə2</option>
+                                        @foreach($contracts as $c)
+                                            <option value="{{$c->title}}" {{$customer->contract_name == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('contract_name')) <small class="form-text text-danger">{{$errors->first('contract_name')}}</small> @endif
                                 </div>

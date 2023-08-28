@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CustomerStoreRequest;
 use App\Http\Requests\CustomerUpdateRequest;
 use App\Models\Customer;
+use App\Models\Settings\ActivityArea;
+use App\Models\Settings\CompanyAddress;
+use App\Models\Settings\CompanyCategory;
+use App\Models\Settings\CompanyType;
+use App\Models\Settings\Contract;
 use App\Services\SearchService;
 use App\Services\FileService;
 use Illuminate\Http\Request;
@@ -36,6 +41,8 @@ class CustomerController extends Controller
 
         $route = 'customers.index';
 
+
+
         return view('customers.index', compact('data','route'));
 
     }
@@ -45,7 +52,12 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customers.create');
+        $field_activities = ActivityArea::all();
+        $company_categories = CompanyCategory::all();
+        $company_addresses = CompanyAddress::all();
+        $company_types = CompanyType::all();
+        $contracts = Contract::all();
+        return view('customers.create', compact('field_activities','contracts','company_addresses','company_types','company_categories'));
     }
 
     /**
@@ -81,7 +93,12 @@ class CustomerController extends Controller
 
     public function edit(Customer $customer)
     {
-        return view('customers.edit', compact('customer'));
+        $field_activities = ActivityArea::all();
+        $company_categories = CompanyCategory::all();
+        $company_addresses = CompanyAddress::all();
+        $company_types = CompanyType::all();
+        $contracts = Contract::all();
+        return view('customers.edit', compact('customer','field_activities','contracts','company_addresses','company_types','company_categories'));
     }
 
     /**

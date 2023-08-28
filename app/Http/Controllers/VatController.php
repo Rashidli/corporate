@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VatStoreRequest;
 use App\Http\Requests\VatUpdateRequest;
 use App\Models\Customer;
+use App\Models\Settings\Bank;
+use App\Models\Settings\Institution;
+use App\Models\Settings\PaymentType;
 use App\Models\Vat;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
@@ -34,7 +37,11 @@ class VatController extends Controller
     public function create()
     {
         $corporates = Customer::select('id','company_name', 'company_voen')->get();
-        return view('vats.create', compact('corporates'));
+        $institutions = Institution::all();
+        $payment_types = PaymentType::all();
+        $banks = Bank::all();
+        return view('vats.create', compact('corporates','institutions','payment_types','banks'));
+
     }
 
     /**
@@ -68,7 +75,10 @@ class VatController extends Controller
     public function edit(Vat $vat)
     {
         $corporates = Customer::select('id','company_name', 'company_voen')->get();
-        return view('vats.edit', compact('vat','corporates'));
+        $institutions = Institution::all();
+        $payment_types = PaymentType::all();
+        $banks = Bank::all();
+        return view('vats.edit', compact('vat','corporates','institutions','payment_types','banks'));
     }
 
     /**

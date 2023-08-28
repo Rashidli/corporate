@@ -6,11 +6,16 @@ use App\Http\Requests\MeetingStoreRequest;
 use App\Http\Requests\MeetingUpdateRequest;
 use App\Models\Customer;
 use App\Models\Meeting;
+use App\Models\Settings\ActivityArea;
+use App\Models\Settings\Employee;
+use App\Models\Settings\MeetingType;
+use App\Models\Settings\PaymentCondition;
+use App\Models\Settings\Sender;
+use App\Models\Settings\ServiceOffer;
+use App\Models\Settings\Source;
 use App\Services\FileService;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class MeetingController extends Controller
 {
@@ -41,7 +46,15 @@ class MeetingController extends Controller
     public function create()
     {
         $corporates = Customer::select('id','company_name', 'company_voen')->get();
-        return view('meetings.create', compact('corporates'));
+        $senders = Sender::all();
+        $field_activities = ActivityArea::all();
+        $payment_conditions = PaymentCondition::all();
+        $meeting_types = MeetingType::all();
+        $service_offers = ServiceOffer::all();
+        $sources = Source::all();
+        $employees = Employee::all();
+
+        return view('meetings.create', compact('corporates','senders','field_activities','payment_conditions','meeting_types','service_offers','sources','employees'));
     }
 
     /**
@@ -79,7 +92,14 @@ class MeetingController extends Controller
     public function edit(Meeting $meeting)
     {
         $corporates = Customer::select('id','company_name', 'company_voen')->get();
-        return view('meetings.edit', compact('meeting', 'corporates'));
+        $senders = Sender::all();
+        $field_activities = ActivityArea::all();
+        $payment_conditions = PaymentCondition::all();
+        $meeting_types = MeetingType::all();
+        $service_offers = ServiceOffer::all();
+        $sources = Source::all();
+        $employees = Employee::all();
+        return view('meetings.edit', compact('meeting', 'corporates','senders','field_activities','payment_conditions','meeting_types','service_offers','sources','employees'));
     }
 
     /**
@@ -112,9 +132,6 @@ class MeetingController extends Controller
     public function destroy(Meeting $meeting)
     {
 
-//        if ($meeting->contrmeeting_file) {
-//            Storage::disk('public')->delete('contrmeetings/' . $meeting->contrmeeting_file);
-//        }
 
         $meeting->delete();
 

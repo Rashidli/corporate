@@ -14,15 +14,16 @@
                                         <label class="col-form-label">Müəssisə</label>
                                         <select class="form-control" type="text" name="institution_name">
                                             <option selected disabled>----- </option>
-                                            <option value="Müəssisə1">Müəssisə1</option>
-                                            <option value="Müəssisə2">Müəssisə2</option>
+                                            @foreach($institutions as $c)
+                                                <option value="{{$c->title}}" {{old('institution_name') == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                            @endforeach
                                         </select>
                                         @if($errors->first('enterprise_name')) <small class="form-text text-danger">{{$errors->first('enterprise_name')}}</small> @endif
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="col-form-label">Tarix</label>
-                                        <input class="form-control" type="date" name="date">
+                                        <input value="{{old('date')}}" class="form-control" type="date" name="date">
                                         @if($errors->first('date')) <small class="form-text text-danger">{{$errors->first('date')}}</small> @endif
                                     </div>
 
@@ -31,7 +32,7 @@
                                         <select class="form-control js-example-basic-single" type="text" name="corporate_name" id="corporate_name">
                                             <option selected disabled>-----</option>
                                             @foreach($corporates as $c)
-                                                <option value="{{$c->company_name}}" data-voen="{{$c->company_voen}}">{{$c->company_name}}</option>
+                                                <option value="{{$c->company_name}}" data-voen="{{$c->company_voen}}" {{old('corporate_name') == $c->company_name ? 'selected' : ''}}>{{$c->company_name}}</option>
                                             @endforeach
                                         </select>
                                         @if($errors->first('corporate_name')) <small class="form-text text-danger">{{$errors->first('corporate_name')}}</small> @endif
@@ -39,19 +40,19 @@
 
                                     <div class="mb-3">
                                         <label class="col-form-label">Vöen</label>
-                                        <input class="form-control" type="text" id="voen" name="voen" value="">
+                                        <input value="{{old('voen')}}" class="form-control" type="text" id="voen" name="voen" value="">
                                         @if($errors->first('voen')) <small class="form-text text-danger">{{$errors->first('voen')}}</small> @endif
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="col-form-label">Ödəniş məbləği-ƏSAS</label>
-                                        <input class="form-control" type="text" name="payment_main">
+                                        <input value="{{old('payment_main')}}" class="form-control" type="text" name="payment_main">
                                         @if($errors->first('payment_main')) <small class="form-text text-danger">{{$errors->first('payment_main')}}</small> @endif
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="col-form-label">Ödəniş tarixi-ƏSAS</label>
-                                        <input class="form-control" type="date" name="payment_date_main">
+                                        <input value="{{old('payment_date_main')}}" class="form-control" type="date" name="payment_date_main">
                                         @if($errors->first('payment_date_main')) <small class="form-text text-danger">{{$errors->first('payment_date_main')}}</small> @endif
                                     </div>
 
@@ -61,13 +62,13 @@
 
                                     <div class="mb-3">
                                         <label class="col-form-label">Qeyd ƏDV</label>
-                                        <input class="form-control" type="text" name="note_edv">
+                                        <input value="{{old('note_edv')}}" class="form-control" type="text" name="note_edv">
                                         @if($errors->first('note_edv')) <small class="form-text text-danger">{{$errors->first('note_edv')}}</small> @endif
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="col-form-label">Qeyd</label>
-                                        <input class="form-control" type="text" name="note">
+                                        <input value="{{old('note')}}" class="form-control" type="text" name="note">
                                         @if($errors->first('note')) <small class="form-text text-danger">{{$errors->first('note')}}</small> @endif
                                     </div>
 
@@ -75,8 +76,9 @@
                                         <label class="col-form-label">Valyuta</label>
                                         <select class="form-control" type="text" name="currency">
                                             <option selected disabled>-----</option>
-                                            <option value="Valyuta1">Valyuta1</option>
-                                            <option value="Valyuta2">Valyuta2</option>
+                                            @foreach($currencies as $c)
+                                                <option value="{{$c->title}}" {{old('currency') == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                            @endforeach
                                         </select>
                                         @if($errors->first('company_name')) <small class="form-text text-danger">{{$errors->first('company_name')}}</small> @endif
                                     </div>
@@ -85,8 +87,10 @@
                                         <label class="col-form-label">Ödəmə növü</label>
                                         <select class="form-control" type="text" name="payment_method">
                                             <option selected disabled>-----</option>
-                                            <option value="Ödəmə növü1">Ödəmə növü1</option>
-                                            <option value="Ödəmə növü2">Ödəmə növü2</option>
+                                            @foreach($payment_types as $c)
+                                                <option value="{{$c->title}}" {{old('payment_method') == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                            @endforeach
+
                                         </select>
                                         @if($errors->first('payment_method')) <small class="form-text text-danger">{{$errors->first('payment_method')}}</small> @endif
                                     </div>
@@ -95,21 +99,22 @@
                                         <label class="col-form-label">Bank</label>
                                         <select class="form-control" type="text" name="bank">
                                             <option selected disabled>-----</option>
-                                            <option value="Bank1">Bank1</option>
-                                            <option value="Bank2">Bank2</option>
+                                            @foreach($banks as $c)
+                                                <option value="{{$c->title}}" {{old('bank') == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                            @endforeach
                                         </select>
                                         @if($errors->first('company_name')) <small class="form-text text-danger">{{$errors->first('company_name')}}</small> @endif
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="col-form-label">Ödəniş məbləği ƏDV</label>
-                                        <input class="form-control" type="text" name="payment_edv">
+                                        <input value="{{old('payment_edv')}}" class="form-control" type="text" name="payment_edv">
                                         @if($errors->first('payment_edv')) <small class="form-text text-danger">{{$errors->first('payment_edv')}}</small> @endif
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="col-form-label">Ödəniş tarixi ƏDV</label>
-                                        <input class="form-control" type="date" name="payment_date_edv">
+                                        <input value="{{old('payment_date_edv')}}" class="form-control" type="date" name="payment_date_edv">
                                         @if($errors->first('payment_date_edv')) <small class="form-text text-danger">{{$errors->first('payment_date_edv')}}</small> @endif
                                     </div>
 

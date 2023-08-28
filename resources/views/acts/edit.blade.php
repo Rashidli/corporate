@@ -37,8 +37,9 @@
                                     <label class="col-form-label">Müəssisə</label>
                                     <select class="form-control" type="text" name="enterprise_name">
                                         <option selected disabled>----- </option>
-                                        <option value="Müəssisə1">Müəssisə1</option>
-                                        <option value="Müəssisə2">Müəssisə2</option>
+                                        @foreach($institutions as $c)
+                                            <option value="{{$c->title}}" {{$act->enterprise_name == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('enterprise_name')) <small class="form-text text-danger">{{$errors->first('enterprise_name')}}</small> @endif
                                 </div>
@@ -67,8 +68,9 @@
                                     <label class="col-form-label">Şirkət</label>
                                     <select class="form-control" type="text" name="company_name">
                                         <option selected disabled>----- </option>
-                                        <option value="Şirkət1">Şirkət1</option>
-                                        <option value="Şirkət2">Şirkət2</option>
+                                        @foreach($company_names as $c)
+                                            <option value="{{$c->title}}" {{$act->company_name == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('company_name')) <small class="form-text text-danger">{{$errors->first('company_name')}}</small> @endif
                                 </div>

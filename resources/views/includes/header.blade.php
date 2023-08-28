@@ -210,23 +210,27 @@
                             <span>Tənzimləmələr</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="#">Şirkət adları</a></li>
-                            <li><a href="#">Müəssissələr</a></li>
-                            <li><a href="#">Şirkət Kateqoriyaları</a></li>
-                            <li><a href="#">Fəaliyyət sahələri</a></li>
-                            <li><a href="#">Şirkət Ünvanları</a></li>
-                            <li><a href="#">Şirkət Nöləri</a></li>
-                            <li><a href="#">Müqavilələr</a></li>
-                            <li><a href="#">Valyutalar</a></li>
-                            <li><a href="#">Ödəmə növləri</a></li>
-                            <li><a href="#">Ödəmə Şərtləri</a></li>
-                            <li><a href="#">Banklar</a></li>
-                            <li><a href="#">Görüşən əməkdaşlar</a></li>
-                            <li><a href="#">Görüşən əməkdaşlar</a></li>
-                            <li><a href="#">Göndərənlər</a></li>
-                            <li><a href="#">Görüş növləri</a></li>
-                            <li><a href="#">Xidmət təklifləri</a></li>
-                            <li><a href="#">Mənbələr</a></li>
+{{--                            <li><a href="{{route('settings.create')}}">Yarat</a></li>--}}
+                            <li><a href="{{route('company_names.index')}}">Şirkət adları</a></li>
+                            <li><a href="{{route('institutions.index')}}">Müəssisələr</a></li>
+                            <li><a href="{{route('company_categories.index')}}">Şirkət Kateqoriyaları</a></li>
+                            <li><a href="{{route('activity_areas.index')}}">Fəaliyyət sahələri</a></li>
+                            <li><a href="{{route('company_addresses.index')}}">Şirkət Ünvanları</a></li>
+                            <li><a href="{{route('company_types.index')}}">Şirkət Nöləri</a></li>
+                            <li><a href="{{route('contracts.index')}}">Müqavilələr</a></li>
+                            <li><a href="{{route('currencies.index')}}">Valyutalar</a></li>
+                            <li><a href="{{route('payment_types.index')}}">Ödəmə növləri</a></li>
+                            <li><a href="{{route('payment_conditions.index')}}">Ödəmə Şərtləri</a></li>
+                            <li><a href="{{route('banks.index')}}">Banklar</a></li>
+                            <li><a href="{{route('employees.index')}}">Əməkdaşlar</a></li>
+                            <li><a href="{{route('senders.index')}}">Göndərənlər</a></li>
+                            <li><a href="{{route('meeting_types.index')}}">Görüş növləri</a></li>
+                            <li><a href="{{route('service_offers.index')}}">Xidmət təklifləri</a></li>
+                            <li><a href="{{route('sources.index')}}">Mənbələr</a></li>
+
+
+
+
                         </ul>
                     </li>
 

@@ -56,8 +56,9 @@
                                     <label class="col-form-label">Göndərən</label>
                                     <select class="form-control" type="text" name="sender">
                                         <option selected disabled>----- </option>
-                                        <option value="Göndərən1">Göndərən1</option>
-                                        <option value="Göndərən2">Göndərən2</option>
+                                        @foreach($senders as $c)
+                                            <option value="{{$c->title}}" {{$meeting->sender == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('sender')) <small class="form-text text-danger">{{$errors->first('sender')}}</small> @endif
                                 </div>
@@ -66,8 +67,9 @@
                                     <label class="col-form-label">Fəaliyyət sahəsi</label>
                                     <select class="form-control" type="text" name="activity_area">
                                         <option selected disabled>----- </option>
-                                        <option value="Fəaliyyət sahəsi1">Fəaliyyət sahəsi1</option>
-                                        <option value="Fəaliyyət sahəsi2">Fəaliyyət sahəsi2</option>
+                                        @foreach($field_activities as $c)
+                                            <option value="{{$c->title}}" {{$meeting->activity_area == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('activity_area')) <small class="form-text text-danger">{{$errors->first('activity_area')}}</small> @endif
                                 </div>
@@ -80,8 +82,9 @@
                                     <label class="col-form-label">Ödəmə Şərti</label>
                                     <select class="form-control" type="text" name="payment_condition">
                                         <option selected disabled>----- </option>
-                                        <option value="Ödəmə Şərti1">Ödəmə Şərti1</option>
-                                        <option value="Ödəmə Şərti2">Ödəmə Şərti2</option>
+                                        @foreach($payment_conditions as $c)
+                                            <option value="{{$c->title}}" {{$meeting->payment_condition == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('payment_condition')) <small class="form-text text-danger">{{$errors->first('payment_condition')}}</small> @endif
                                 </div>
@@ -108,8 +111,9 @@
                                     <label class="col-form-label">Görüş növü</label>
                                     <select class="form-control" type="text" name="meeting_type">
                                         <option selected disabled>----- </option>
-                                        <option value="Görüş növü1">Görüş növü1</option>
-                                        <option value="Görüş növü2">Görüş növü2</option>
+                                        @foreach($meeting_types as $c)
+                                            <option value="{{$c->title}}" {{$meeting->meeting_type == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('meeting_type')) <small class="form-text text-danger">{{$errors->first('meeting_type')}}</small> @endif
                                 </div>
@@ -118,8 +122,9 @@
                                     <label class="col-form-label">Xidmət təklifi</label>
                                     <select class="form-control" type="text" name="service_offer">
                                         <option selected disabled>----- </option>
-                                        <option value="Xidmət təklifi1">Xidmət təklifi1</option>
-                                        <option value="Xidmət təklifi2">Xidmət təklifi2</option>
+                                        @foreach($service_offers as $c)
+                                            <option value="{{$c->title}}" {{$meeting->service_offer == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('service_offer')) <small class="form-text text-danger">{{$errors->first('service_offer')}}</small> @endif
                                 </div>
@@ -128,8 +133,9 @@
                                     <label class="col-form-label">Mənbə</label>
                                     <select class="form-control" type="text" name="source">
                                         <option selected disabled>----- </option>
-                                        <option value="Mənbə1">Mənbə1</option>
-                                        <option value="Mənbə2">Mənbə2</option>
+                                        @foreach($sources as $c)
+                                            <option value="{{$c->title}}" {{$meeting->source == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('source')) <small class="form-text text-danger">{{$errors->first('source')}}</small> @endif
                                 </div>
@@ -140,8 +146,9 @@
                                     <label class="col-form-label">Görüşən əməkdaş</label>
                                     <select class="form-control" type="text" name="meeting_person">
                                         <option selected disabled>----- </option>
-                                        <option value="Görüşən əməkdaş1">Görüşən əməkdaş1</option>
-                                        <option value="Görüşən əməkdaş2">Görüşən əməkdaş2</option>
+                                        @foreach($employees as $c)
+                                            <option value="{{$c->title}}" {{$meeting->meeting_person == $c->title ? 'selected' : ''}}>{{$c->title}}</option>
+                                        @endforeach
                                     </select>
                                     @if($errors->first('meeting_person')) <small class="form-text text-danger">{{$errors->first('meeting_person')}}</small> @endif
                                 </div>

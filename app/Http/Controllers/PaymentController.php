@@ -6,6 +6,10 @@ use App\Http\Requests\PaymentStoreRequest;
 use App\Http\Requests\PaymentUpdateRequest;
 use App\Models\Customer;
 use App\Models\Payment;
+use App\Models\Settings\Bank;
+use App\Models\Settings\Currency;
+use App\Models\Settings\Institution;
+use App\Models\Settings\PaymentType;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
 
@@ -34,7 +38,11 @@ class PaymentController extends Controller
     public function create()
     {
         $corporates = Customer::select('id','company_name', 'company_voen')->get();
-        return view('payments.create', compact('corporates'));
+        $institutions = Institution::all();
+        $currencies = Currency::all();
+        $payment_types = PaymentType::all();
+        $banks = Bank::all();
+        return view('payments.create', compact('corporates','institutions','currencies','payment_types','banks'));
     }
 
     /**
@@ -68,7 +76,11 @@ class PaymentController extends Controller
     public function edit(Payment $payment)
     {
         $corporates = Customer::select('id','company_name', 'company_voen')->get();
-        return view('payments.edit', compact('payment','corporates'));
+        $institutions = Institution::all();
+        $currencies = Currency::all();
+        $payment_types = PaymentType::all();
+        $banks = Bank::all();
+        return view('payments.edit', compact('payment','corporates','institutions','currencies','payment_types','banks'));
     }
 
     /**

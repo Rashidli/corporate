@@ -6,6 +6,8 @@ use App\Http\Requests\ActStoreRequest;
 use App\Http\Requests\ActUpdateRequest;
 use App\Models\Act;
 use App\Models\Customer;
+use App\Models\Settings\CompanyName;
+use App\Models\Settings\Institution;
 use App\Services\FileService;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
@@ -17,7 +19,6 @@ class ActController extends Controller
     public $searchService;
 
     public function __construct(SearchService $searchService)
-
     {
 
         $this->searchService = $searchService;
@@ -44,7 +45,9 @@ class ActController extends Controller
     public function create()
     {
         $corporates = Customer::select('id','company_name', 'company_voen')->get();
-        return view('acts.create', compact('corporates'));
+        $company_names = CompanyName::all();
+        $institutions = Institution::all();
+        return view('acts.create', compact('corporates','company_names','institutions'));
     }
 
     /**
@@ -82,7 +85,9 @@ class ActController extends Controller
     {
 
         $corporates = Customer::select('id','company_name', 'company_voen')->get();
-        return view('acts.edit', compact('act', 'corporates'));
+        $company_names = CompanyName::all();
+        $institutions = Institution::all();
+        return view('acts.edit', compact('act', 'corporates','company_names','institutions'));
 
     }
 
