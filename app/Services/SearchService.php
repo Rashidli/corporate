@@ -22,7 +22,6 @@ class SearchService
         }
 
 
-
         if ($text) {
 
             $query->where(function ($query) use ($text, $table) {
@@ -37,7 +36,7 @@ class SearchService
         }
 
         $count = count($query->get());
-        $data = $query->paginate($limit)->withQueryString();
+        $data = $query->orderBy('id', 'desc')->paginate($limit)->withQueryString();
 
         return ['items' => $data, 'count' => $count];
 

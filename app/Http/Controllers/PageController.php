@@ -25,11 +25,13 @@ class PageController extends Controller
 
     public function home()
     {
+
         $customer_count = Customer::all()->count();
         $act_count = Act::all()->count();
         $payment_count = Payment::all()->count();
         $meeting_count = Meeting::all()->count();
         return view('home',compact('customer_count','act_count','payment_count','meeting_count'));
+
     }
 
 

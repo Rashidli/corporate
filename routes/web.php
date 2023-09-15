@@ -38,7 +38,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/rest',function (){
+   \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+});
 Route::get('/', [PageController::class,'login'])->name('login');
 Route::get('/register', [PageController::class,'register'])->name('register');
 Route::post('/login_submit',[AuthController::class,'login_submit'])->name('login_submit');
@@ -79,6 +81,5 @@ Route::group(['middleware' =>'auth'], function (){
         Route::resource('sources',SourceController::class);
 
     //setting routes end
-
 
 });
